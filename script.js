@@ -25,7 +25,6 @@ function calculateTattwaMinuteSecond(){
     var mcount = 0;
     console.log("m é: "+m);
     while(maux > 24){
-        console.log("entrou na pora de -24");
         maux = maux - 24;
         mcount++;
     }
