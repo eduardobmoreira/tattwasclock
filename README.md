@@ -8,3 +8,6 @@ N2 = horário que o usuário est vendo o sistema (horário atual), depois de A e
 P = período de tempo entre A e o horário atual.<br><br>
 
 Dúvida: como calcular N1.
+<br><br>
+
+![Relogio Tattwas Img](relogio_tattwas_rascunho.jpg?raw=true "Relogio Tattwas Img")
