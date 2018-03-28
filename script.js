@@ -11,16 +11,26 @@ function calculateTattwaMinuteSecond(){
     a.setMinutes(30);
     a.setSeconds(0);
 
-    var p = n.getTime() - a.getTime();
-    var m = millisToMinutes(p);
+    var p;
 
-    console.log("m quebrado: "+m);
+    if(n.getTime() < a.getTime()){
+        //N2
+        var pl = n.getTime() - z.getTime();
+        var zl = new Date(z);
+        zl.setDate(z.getDate() + 1);
+        var pz = zl.getTime() - a.getTime();
+        p = pz + pl;
+    } else {
+        //N1
+        p = n.getTime() - a.getTime();
+    }
+
+    var m = millisToMinutes(p);
 
     if(isFloat(m)){
         m = Math.ceil(m);
     }
 
-    var j;
     var maux = m;
     var mcount = 0;
     console.log("m é: "+m);
@@ -29,8 +39,6 @@ function calculateTattwaMinuteSecond(){
         mcount++;
     }
     mcount++; //último fracionado
-    console.log("maux é: "+maux);
-    console.log("mcount é: "+mcount);
 
     var ttwstxt = ['Akasha', 'Vayu', 'Tejas', 'Prithivi', 'Apas'];
     var ttwtxt = '';
