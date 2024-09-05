@@ -1,0 +1,144 @@
+body{
+    margin-top:0px;
+    background-image: url(medieval-texture-blue.png);
+}
+#main-container{
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding-left: 50px;
+    padding-right: 50px;
+}
+#ttw-container{
+    font-size: 30px;
+    width: 230px;
+    margin: auto;
+}
+p{
+    float: left;
+}
+h1{
+    color: #70000a;
+    font-size: 30px;
+    text-shadow: 2px 2px 5px #FF0000;
+}
+.icon{
+    width: 30px;
+    margin-bottom: -4px;
+}
+.icon-gnosis{
+    width: 40px;
+    margin-bottom: -16px;
+    margin-left: 10px;
+}
+#help-question{
+    font-weight: normal;
+    text-align: left;
+    background-color: #ab6164;
+    color: white;
+    width: 55%;
+    margin: auto;
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+#autor-sistema{
+    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+.botao{
+    background-color: rgba(0, 0, 0, 0.56);
+    border: none;
+    padding: 15px 25px;
+    color: white;
+    border-radius: 5px;
+    margin: 15px 25px;
+    font-weight: bold;
+}
+.botao-menu{
+    background-color: #ab6164;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    margin: 0px;
+}
+.floatleft{
+    float: left;
+    color: #143F78;
+}
+#tattwa{
+    width: 132px;
+    float: left;
+}
+#future-tattwa{
+    float: left;
+}
+#instruction-txt-container{
+    width: 480px;
+    background-color: #ab6164;
+    color: white;
+    margin: auto;
+    font-weight: normal;
+    text-align: left;
+
+}
+.instructions{
+    padding: 10px;
+    display: none;
+}
+.number{
+    height: 25px;
+    padding-left: 10px;
+    width: 75px;
+    border-color: black;
+}
+#configure-container{
+    font-weight:normal;
+    text-align: center;
+    margin: auto;
+    border-style: solid;
+    border-width: 1px;
+    padding: 30px;
+    width: 540px;
+    border-radius: 15px;
+    margin-bottom: 35px;
+}
+#future-ttw-container{
+    margin: auto;
+    width: 220px;
+    font-size: 30px;
+}
+#future-dates-title{
+    margin-bottom: 30px;
+}
+#future-dates-container{
+    background-color: rgba(0, 0, 0, 0.17);
+    font-weight:normal;
+    text-align: center;
+    margin: auto;
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 35px;
+    padding-bottom: 20px;
+    width: 540px;
+    border-radius: 15px;
+    margin-bottom: 35px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+#mais-txt{
+    margin: auto;
+    padding: 10px;
+    text-align: left;
+    font-weight: normal;
+    width: 478px;
+    margin-top: 20px;
+}

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="blue-fire-ico.png" />
+    <title>Tattwas Clock</title>
+
+    <!-- Para o Google -->
+    <meta name="description" content="O relógio táttwico nos ajuda a saber em qual tattwa estamos sendo regidos neste exato momento. Podemos agir de acordo com os tattwas para ter sucesso na vida." />
+    <meta name="keywords" content="Tattwas Clock, Tattwas, Sucesso na Vida" />
+    <meta name="author" content="Eduardo Barbosa Moreira" />
+    <meta name="copyright" content="Software Livre" />
+    <meta name="application-name" content="Tattwas Clock" />
+
+    <!-- Para o Facebook -->
+    <meta property="og:title" content="Tattwas Clock" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="http://eduardo.pe.hu/tattwas-clock/tattwas-clock-forface.jpg" />
+    <meta property="og:url" content="http://eduardo.pe.hu/tattwas-clock" />
+    <meta property="og:description" content="O relógio táttwico nos ajuda a saber em qual tattwa estamos sendo regidos neste exato momento. Podemos agir de acordo com os tattwas para ter sucesso na vida." />
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+
+<main id="main-container">
+    <br>
+    <br>
+    <h1>TATTWAS CLOCK <img src="question.svg" alt="Question Icon" id="question-icon" class="icon" onclick="expandColapseQuestionHelp()" ><img src="settings.svg" alt="Settings Icon" id="settings-icon" class="icon" style="margin-left: 10px;" onclick="expandColapseSettings()" ></h1>
+    <div id="help-question">
+        O relógio táttwico nos ajuda a saber em qual tattwa estamos sendo regidos neste exato momento. Também podemos fazer previsões de qual tattwa será regido em uma data e horário dados.<br><br>
+        Os tattwas são vibrações do éter e vibram durante 24 minutos cada um, conforme o V.M. Samael Aun Weor nos explica em sua obra entitulada "Introdução a Gnosis", podemos agir de acordo com os tattwas para ter sucesso na vida.<br><br>
+        A esquerda está o nome do tattwa e a direita está o cronômetro de minutos e segundos retrógrado.<br><br>
+        <div id="autor-sistema" >
+            Desenvolvido por <a target="_blank" style="color: white;" href="https://www.linkedin.com/in/eduardobm/">Eduardo Barbosa Moreira</a> <img id="icon-gnosis" src="gnosis-sun.png" alt="Question Icon" class="icon-gnosis" >
+        </div>
+        <div style="text-align: center;">
+            <button id="help-question-button" onclick="expandColapseQuestionHelp()" class="botao" type="button">fechar</button>
+        </div>
+    </div>
+    <div style="width: 100%; margin-bottom: 30px;" >
+        <div id="ttw-container">
+            <div id="tattwa" style="color: black;" >Tattwa&nbsp;</div>
+            <div id="cronometro" class="floatleft" >00:00</div>
+            <br>
+        </div>
+    </div>
+
+    <div id="configure-container" >
+        <div style="margin-bottom: 30px;">É necessário inicializar ou configurar abaixo o horário da aurora. Utilize o site do Google e pesquise por "horário da aurora":<br><a target="_blank" href="https://www.google.com.br/search?q=hor%C3%A1rio+da+aurora">https://www.google.com.br/search?q=hor%C3%A1rio+da+aurora</a><br>para saber o horário da aurora de sua região.</div>
+        <input type="number" placeholder="Horas" class="number" id="horas"> :
+        <input type="number" placeholder="Minutos" class="number" id="minutos">
+        <br><br>
+        <button id="settings-button-save" onclick="saveSettings()" class="botao" type="button">salvar</button>
+        <button id="settings-button-close" onclick="expandColapseSettings()" class="botao" type="button">fechar</button>
+    </div>
+
+    <div id="future-dates-container">
+        <div id="future-dates-title">Insira uma data e horário no futuro para saber qual tattwa estará regendo:</div>
+        <input id="future-dia" type="number" class="number" placeholder="Dia"> /
+        <input id="future-mes" type="number" class="number" placeholder="Mes"> /
+        <input id="future-ano" type="number" class="number" placeholder="Ano"><br><br>
+        <input id="future-horas" type="number" class="number" placeholder="Horas"> :
+        <input id="future-minutos" type="number" class="number" placeholder="Minutos"> :
+        <input id="future-segundos" type="number" class="number" placeholder="Seg."><br><br>
+        <div id="future-ttw-container-do-container" style="width: 100%; margin-bottom: 15px;" >
+            <div id="future-ttw-container">
+                <div id="future-tattwa" style="color: black;" >Tattwa&nbsp;</div>
+                <div id="future-cronometro" class="floatleft" >00:00</div>
+                <br>
+            </div>
+        </div>
+        <button id="future-dates-button-verify" type="button" class="botao" onclick="calculateFutureDate()">verificar</button>&nbsp;
+        <button id="future-dates-button-clear" type="button" class="botao" onclick="cleanFutureDate()">limpar</button>
+    </div>
+
+    <div id="instructions-container" >
+        <div id="instructions-menu">
+            <button id="botao-tattwas" class="botao-menu" onclick="menuPrincipal('tattwas', this)" >Tattwas</button><button id="botao-akasha" class="botao-menu" style="background-color: blue;" onclick="menuPrincipal('Akasha', this)" >Akasha</button><button id="botao-vayu" class="botao-menu" style="background-color: #056EF7;" onclick="menuPrincipal('Vayu', this)" >Vayu</button><button id="botao-tejas" class="botao-menu" style="background-color: #AB1C0C;" onclick="menuPrincipal('Tejas', this)" >Tejas</button><button id="botao-prithivi" class="botao-menu" style="background-color: #5E2B25;" onclick="menuPrincipal('Prithivi', this)" >Prithivi</button><button id="botao-apas" class="botao-menu" style="background-color: #0D1D78;" onclick="menuPrincipal('Apas', this)" >Apas</button>
+        </div>
+        <div id="instruction-txt-container">
+            <section id="instruction-txt-tattwas"  >
+                <b>Lição 3</b><br>
+                <b>livro: Introdução a Gnosis
+                    <br>
+                    autor: Samael Aun Weor</b><br><br>
+                O grande advogado José M. Seseras disse o seguinte: “Não há sorte nem desventura, êxito nem fracasso, tudo é vibração do éter. Aprendendo o manuseio dos tattwas se podem resolver favoravelmente todos os assuntos da vida”.
+                Você necessita de um sistema preciso e exato para conseguir dinheiro, um sistema científico que nunca falhe. Você necessita aproveitar as circunstâncias favoráveis para lograr a cristalização de todos seus projetos (comerciais, etc.).
+                <br><br>
+                Recorde: tattwa é vibração do éter. Nesta época de rádio, da televisão e dos foguetes teleguiados, resultaria absurdo negar a vibração do éter. Um grande sábio disse: “A vida nasceu da radiação, subsiste pela radiação e se suprime por qualquer desequilíbrio oscilatório”.
+                Você tem direito de triunfar, O espírito deve vencer a matéria. Nós não podemos aceitar a miséria. Lembre-se de que a miséria é própria dos espíritos fracassados. Quando o espírito vence a matéria, o resultado é a luz, o esplendor, o triunfo completo no econômico, no social e no espiritual. É necessário que você conheça a Lei da Vibração Universal.
+                <br><br>
+                O estudo dos tattwas é importantíssimo.
+                Tattwa (este termo é indostânico) é vibração do éter.
+                Agora os cientistas dizem que o éter não existe e que a única coisa real é o campo magnético. Também poderíamos dizer que não existe a matéria e que a única coisa real é a energia. Estas são palavras, questão de termos. O campo magnético é o éter. “Tudo vem do éter, tudo volta ao éter”. Sir Oliver Lodge, o grande cientista britânico, diz: “É o éter o que, por diversas modificações de seu equilíbrio, dá lugar a todos os fenômenos do Universo, desde a impalpável luz até as massas formidáveis dos mundos”.
+                <br><br>
+                <b>PRANA</b><br>
+                Prana é a energia cósmica. Prana é vibração, movimento elétrico, luz, calor, magnetismo universal, vida. Prana é a vida que palpita em cada átomo e em cada Sol. Prana é a vida do éter. A grande vida, quer dizer, prana se transforma em uma substância azul intenso muito divina; o nome dessa substância é akasha. O akasha é uma substância maravilhosa que enche todo o espaço infinito e que quando se modifica, converte-se em éter. É interessante saber que o éter modificando-se, converte-se, por sua vez, nisso que chamamos tattwas.
+                O estudo das vibrações do éter (tattwas) é indispensável. Lembre-se de que os negócios, o amor, a saúde, etc., são controlados pelas vibrações cósmicas.
+                <br><br>
+                Se você conhece as leis vibratórias da vida, se conhece os tattwas, poderá conseguir muito dinheiro. Recorde que o dinheiro, em si mesmo, não é bom nem mau; tudo depende do uso que você faça dele. Se o emprega para o bem, é bom, se o emprega para o mal, é mau. Consiga muito dinheiro e o empregue para o bem da humanidade.
+                Existem sete tattwas principais que você deve aprender a manejar para triunfar na vida. Você necessita ser um triunfador. Nenhum gnóstico deve viver na miséria. É necessário que você conheça os nomes dos sete tattwas; estes nomes são termos sânscritos. Pode ser que lhe custe algum esforço para aprendê-los, porém recorde que vale bem a pena estudar para triunfar na vida.
+                <br><br>
+                <b>NOMES DOS TATTWAS</b><br>
+                Akasha é o princípio do éter. Vayu é o princípio etérico do ar. Tejas é o princípio etérico do fogo. Prithivi é princípio etéreo do elemento terra. Apas é o princípio etérico da água.
+                Existem dois tattwas secretos chamados adi e samadhi que vibram durante a Aurora e que são excelentes para a meditação interna (com eles se logra o êxtase ou samadhi). Não nos estenderemos agora sobre estes tattwas porque são de utilidade somente para estudantes muito adiantados.
+                <br><br>
+                <b>HORÁRIO TÁTTWICO</b><br>
+                A vibração dos tattwas começa com a saída do Sol. Cada tattwa vibra durante vinte e quatro minutos em um período de duas horas. O primeiro tattwa que vibra é o akasha, depois seguem, em ordem sucessiva, vayu, tejas, prithivi e apas. A cada duas horas, volta a vibrar o akasha e se repete a sucessão dos tattwas, na mesma ordem já descrita. Os tattwas vibram de dia e de noite. E necessário saber a hora da saída do Sol.
+            </section>
+            <section id="instruction-txt-Akasha" class="instructions">
+                Akasha é bom, exclusivamente, para a meditação. Aconselhamos que ore muito nesta hora. Não marque encontro de negócios nem de amor a esta hora, porque fracassará inevitavelmente. Este tattwa nos induz a cometer erros gravíssimos.
+                <br><br>
+                Se você trabalha durante este período, deve ser muito cuidadoso (os artistas devem abster-se de trabalhar no akasha). Tudo o que começa em akasha fracassará. Este é o tattwa da morte.
+            </section>
+            <section id="instruction-txt-Vayu" class="instructions">
+                Tudo o que seja velocidade e movimento corresponde a vayu, o princípio do ar. Os ventos, o ar, o tráfego aéreo, etc., se acham relacionados com vayu. Durante este período, as pessoas se deleitam falando mal do próximo, enganando, roubando, etc. Geralmente, os acidentes aéreos ocorrem neste período e os suicidas são estimulados por este tattwa.<br><br>Aconselhamos que não se case durante este período, porque seu matrimônio seria de curta duração. Todo tipo de negócios simples e rápidos são muito bons em vayu, porém os negócios complicados e de longa duração resultam um fracasso. É bom realizar trabalhos intelectuais durante este período. Os grandes iogues manuseiam mentalmente este tattwa e o utilizam inteligentemente quando querem flutuar no ar.
+            </section>
+            <section id="instruction-txt-Tejas" class="instructions">
+                Tejas é quente porque é o princípio etérico do fogo. Durante o período em que este tattwa está em atividade, sentimos mais calor. Você pode banhar-se com água fria em tejas e não se resfriará jamais. Não discuta com ninguém em tejas porque as conseqüências podem ser graves. Você deve aproveitar a hora de tejas para trabalhar intensamente.
+                <br><br>
+                Não se case neste tattwa porque terá constantes desavenças com o cônjuge. As explosões e acidentes mais terríveis acontecem neste período do tattwa tejas.
+            </section>
+            <section id="instruction-txt-Prithivi" class="instructions">
+                Este é o tattwa do êxito na vida. Se você quer triunfar nos negócios, faça-os em prithivi. Se quiser ter boa saúde, coma e beba em prithivi.
+                <br><br>
+                Os casamentos que se realizam em prithivi se fazem felizes para toda a vida. Toda festa, toda conferência, todo negócio, todo encontro que se realize emprithivi será um êxito completo. Prithivi é amor, caridade, benevolência.
+            </section>
+            <section id="instruction-txt-Apas" class="instructions">
+                Apas é o principio da água e o oposto de tejas (fogo). Este tattwa é maravilhoso para a compra de mercadorias. É também maravilhoso para os negócios e você pode conseguir muito dinheiro se souber aproveitar este tattwa.
+                <br><br>
+                Compre bilhete de loteria em apas. As viagens por vias aquáticas, em apas, resultam boas. As chuvas que começam em apas costumam ser muito longas e fortes. O tattwa apas opera concentrando e atraindo.
+            </section>
+        </div>
+        <div id="mais-txt-container">
+            <section id="mais-txt" >
+                <b>PRÁTICA</b><br>
+                Sente-se diante de uma mesa de frente para o Leste, apóie os cotovelos sobre a mesa e proceda da seguinte maneira: introduza os dedos polegares de ambas as mãos nos ouvidos; cubra os olhos com os indicadores, com os médios feche as fossas nasais e com os dedos anulares ou mínimos sele os lábios. Inale lentamente contando até vinte.
+                <br><br>
+                Retenha o alento e conte de um a vinte. Exale lentamente contando de um a vinte. É necesário retirar os dedos das fossas nasais para inalar e exalar, porém durante a retenção do alento, os dedos médios devem fechá-las hermeticamente. E necessário que durante a retenção do alento, você procure ver os tattwas com o terceiro olho.
+                <br><br>
+                O terceiro olho situa-se entre as sobrancelhas. No início, não verá nada, porém, depois de algum tempo, você poderá vê-los e reconhecê-los-á pelas suas cores. Akasha é preto e seu planeta é Saturno. Vayu é azul verdoso e seu planeta é Mercúrio. Tejas é vermelho como o fogo e seu planeta é Marte. Prithivi é amarelo dourado e seu planeta é o Sol, embora Júpiter também o influencie. Apas é branco e seus planetas são Vênus e a Lua.
+                <br><br>
+                <b>Lição 4</b><br>
+                Para triunfar na vida há que se converter em pescador de homens. Jesus escolheu seus discípulos entre os pobres pescadores. Eles tiveram que deixar de pescar peixes para se converterem em pescadores de homens. Quer ter êxito, poder e glória? Escute este conselho: “Ponha no anzol a isca de que o peixe goste”.
+                Não converse com os demais sobre as coisas que interessam a você. O seu é unicamente seu. O ser humano, desgraçadamente, é egoísta e só quer saber do que interessa a si próprio.
+                <br><br>
+                Se fala o próximo das coisas que ele deseja e quer, você influirá positivamente sobre ele e conseguirá, com ele, tudo de que necessita. Há que aprender a ver o ponto de vista do semelhante e ajudá-lo a resolver seus conflitos. Converta-se em uma pessoa altruísta e bondosa, ajude aos outros com seus conselhos, esforce-se para compreender o ponto de vista de outros e logrará pescar em abundância. Quando começamos a compreender o próximo, começamos também a dar os primeiros passos no caminho da felicidade e do êxito.
+                <br><br>
+                Há que estudar e compreender as funções da mente. O que conhece o mecanismo mental, está capacitado para controlá-lo. Se tem falado muito da força mental e são muitas as escolas que ensinam como concentrar a mente.
+                Ninguém pode inteligentemente negar a força do pensamento. Esta força se compõe de ondas e formas radioativas que se trasladam de um cérebro a outro.
+                Há que desenvolver essa força maravilhosa, porém devemos advertir que o pensamento e a ação devem combinar-se sabiamente, se quisermos triunfar na vida. A concentração do pensamento é milagrosa quando se combina inteligentemente com a ação.
+                <br><br>
+                A força mental realiza prodígios e maravilhas quando se fundamenta na sinceridade e na verdade. Não procure enganar o próximo; não use a concentração mental para enganar o semelhante porque o fracasso para você será inevitável. A força mental realiza prodígios quando se utiliza para ajudar os outros.
+                Ajudando os outros, beneficiamos a nós próprios. Essa é a Lei.
+                Necessita triunfar em alguma coisa importante? Sente-se numa poltrona bem cômoda, relaxe seus músculos. Concentre-se no negócio que lhe interessa e imagine o negócio em pleno êxito.
+                <br><br>
+                Identifique-se com o próximo, procure entender o ponto de vista dele e o aconselhe mentalmente, fazendo-o ver as vantagens que lhe proporciona o negócio que vai realizar com você. Assim, as ondas mentais penetrarão profundamente na mente alheia e realizarão maravilhas. Uma hora de perfeita concentração é suficiente para determinar o triunfo de um negócio.
+                <br><br>
+                Todo comerciante tem direito de conseguir dinheiro, porém o que ele vende deve ser bom, útil e necessário para os demais. Não procure enganar os outros porque engana a si próprio. Multidões de vendedores ambulantes percorrem as ruas, oferecendo, inutilmente, suas mercadorias, pois a ninguém interessam essas mercadorias e as pessoas até se entediam quando se encontram com estes vendedores. O erro destes vendedores é que pensam somente no seu e só falam do seu. Se eles aprendessem a ver o ponto de vista alheio, triunfariam inevitavelmente.
+                <br><br>
+                É necessário compreender que todo ser humano tem um “eu” que quer sobressair-se, fazer sentir-se, subir ao topo da escada, etc.; este é, precisamente, o lado débil do ser humano. Você também tem esse lado débil. Não caia nos mesmos erros alheios, nunca diga “eu”, diga sempre “nós”. Quem domina a si próprio, domina os demais.
+                <br><br>
+                Insinue inteligentemente o que você quer, porém não diga “eu quero”.
+                Lembre-se de que aos outros não interessa o que você quer. Deixe que os outros preparem sua idéia, como se fosse deles; ponha os elementos para essa preparação, ponha-os inteligentemente. Deixe que os outros elaborem sua idéia.
+                Pode estar seguro de que os demais se sentem felizes elaborando sua idéia. As pessoas gostam de sentir-se importantes; essa é a debilidade do eu. Explore esta debilidade. Nunca se sinta importante e será importante. Procure dissolver o eu e será verdadeiramente feliz.<br><br>
+                Todo êxito na vida depende da habilidade que você tenha para tratar as demais pessoas. E necessário deixar o egoísmo e cultivar o Cristocentrismo.
+                Urge trabalhar pelo bem comum. É indispensável dissolver o eu e pensar sempre como “nós”. O termo “nós” tem mais força que o egoísta “eu”.
+                Todos os grandes fracassos da vida se devem ao eu. Quando este quer fazer sentir-se, sobressair-se, subir ao topo da escada, vêm, então, as reações das demais pessoas; o resultado de tais reações mentais é o fracasso. Recorde que o eu é energético, é desejo, é recordações, é medo, violência, ódio, apetências, fanatismos, ciúmes, desconfiança, etc.. Você necessita explorar profundamente todos os subterfúgios de sua mente, porque dentro de você mesmo tem isso que se chama eu, mim mesmo, ego, etc.<br><br>
+                Se você quiser triunfar na vida, deve dissolver o eu. Se quiser dissolver o eu, deve desintegrar todos seus defeitos. Se quiser desintegrar seus defeitos, não os condene nem justifique, compreenda-os. Quando condenamos um defeito, o escondemos nos profundos confins da mente e quando o justificamos, o robustecemos horrivelmente; porém quando compreendemos um determinado defeito, então, o desintegramos completamente.<br><br>
+                Quando o eu se dissolve, nos enchemos de plenitude e felicidade. Quando o eu se dissolve, se expressa através de nos o Ser, o espírito, o amor. Recorde que Deus, o espírito, o Ser interno de cada homem, de cada mulher e de cada criatura jamais é o eu. O Ser é divino, eterno e perfeito. O eu é Satã da lenda bíblica. O eu não é o corpo, é energético e diabólico. No eu está a raiz da miséria, a pobreza, os fracassos, as desilusões, os desejos insatisfeitos, os desejos violentos, o ódio, a inveja, os ciúmes, etc. Mude sua vida agora mesmo. Urge que compreenda a necessidade de acabar com todos seus defeitos para dissolver o eu, o Satã, a causa de todos os fracassos. Quando eu se dissolve, fica dentro de nós somente o Ser, Deus, a felicidade. Deus é paz, abundância, felicidade e perfeição.<br><br>
+                <b>PRÁTICA</b><br>
+                Um grande homem, depois de estudar a si próprio, descobriu que tinha doze defeitos que lhe estavam prejudicando. Este homem disse: “Assim como é impossível caçar dez coelhos ao mesmo tempo, porque o caçador que quiser fazer isto não caçaria nenhum, assim também é impossível acabar com meus doze defeitos ao mesmo tempo.”
+                <br><br>
+                Este homem chegou à conclusão de que seria melhor caçar um coelho e, depois, outro, acabar primeiro com um defeito e, depois, com outro. Então, resolveu dedicar dois meses a cada defeito. Quando o homem chegou aos vinte e quatro meses, já não tinha os defeitos, tinha terminado com os doze defeitos que o impediam de chegar ao triunfo. O resultado foi maravilhoso: este homem se converteu no primeiro cidadão dos Estados Unidos, seu nome é: Benjamin Franklin.
+                Imite este personagem. Examine-se e veja quantos defeitos tem, conte-os, enumere-os. Depois, dedique dois meses a cada defeito, em ordem sucessiva, até que elimine todos.
+                <br><br>
+                Sente-se numa poltrona cômoda e ore a seu Deus interno assim: “Tu que és meu verdadeiro Ser, tu que és meu Deus interno, ilumina-me, ajuda-me, faz-me ver meus próprios defeitos. Amém”.
+                Concentre-se nesta prece até chegar ao sono profundo. Procure descobrir todos seus defeitos. Aconselhamos ler a Bíblia. Nos quatro Evangelhos se encontra a palavra do Divino Mestre. Aí verá as virtudes de que necessita, aí verá as virtudes que lhe faltam. Onde falta uma virtude, existe um defeito.
+                <br><br>
+                <b>Lição 5</b><br>
+                <b>O DINHEIRO.</b><br>
+                Por que o dinheiro assumiu tão imensa importância em nossa vida? Dependemos, acaso, exclusivamente dele para nossa própria felicidade psicológica? Todos os seres humanos necessitamos de pão, abrigo e refúgio, disto se sabe. Porém, sendo isto tão natural e simples até para as aves do céu, por que assumiu tão tremenda e espantosa importância e significado? O dinheiro assumiu tal valor exagerado e desproporcionado porque psicologicamente dependemos dele para nosso bem-estar. O dinheiro alimenta nossa vaidade pessoal, nos dá prestígio social, brinda-nos os meios para lograr o poder. O dinheiro tem sido usado pela mente para fins e propósitos totalmente diferentes dos que tem em si mesmo, entre os quais está satisfazer nossas necessidades físicas imediatas. O dinheiro está sendo utilizado com propósitos psicológicos; essa é a causa pela qual ele assumiu uma importância exagerada e desproporcionada.
+                <br><br>
+                Necessitamos de dinheiro para termos pão, abrigo e refúgio; isto é óbvio. Porém quando o dinheiro se converte em uma necessidade psicológica, quando o utilizamos com propósitos diferentes dos que tem em si mesmo, quando dependemos dele para conseguirmos fama, prestígio, posição social, etc., o dinheiro assume, então, diante da mente uma importância exagerada e desproporcionada e, daqui, se origina a luta e o conflito para possuí-lo.
+                <br><br>
+                É lógico que temos necessidade de conseguir dinheiro para satisfazermos nossas necessidades físicas, para termos pão, abrigo e refúgio, porém se dependemos, exclusivamente, do dinheiro para nossa própria felicidade e satisfação pessoal, somos, então, os seres mais desgraçados da Terra. Quando compreendemos profundamente que o dinheiro só tem por objetivo nos proporcionar pão, abrigo e refúgio, então, lhe impomos espontaneamente uma limitação inteligente. O resultado disto é que o dinheiro já não assume, diante de nós, essa importância tão exagerada que tem quando se converte em uma necessidade psicológica.
+                <br><br>
+                O dinheiro, em si mesmo, não é bom nem mau, tudo depende do uso que façamos dele. Se o utilizamos para o bem, é bom; se o utilizamos para o mal, é mau.
+                Necessitamos compreender a fundo a verdadeira natureza da sensação e da satisfação. A mente que quiser chegar a cornpreender a verdade, deve estar livre destas travas.<br><br>
+                Se quisermos de verdade libertar o pensamento da sensação de satisfação, temos que começar por aquelas sensações que são mais familiares para nós e estabelecer aí o fundamento adequado para a compreensão. As sensações têm seu lugar adequado e quando as compreendemos profundamente em todos os níveis da mente, não assumem a estúpida deformação que têm agora. Muitas pessoas pensam que se toda ordem de coisas marchasse de acordo com o partido político ao qual pertencem e pelo qual lutam sempre, teríamos um mundo feliz, cheio de abundância, paz e perfeição. Esse é um conceito falso, porque realmente nada disso pode existir se antes não temos compreendido individualmente o verdadeiro significado das coisas.<br><br>
+                O ser humano é demasiado pobre internamente e, por isso, necessita do dinheiro e das coisas para sua sensação e satisfação pessoal. Quando alguém é pobre internamente, busca externamente dinheiro e coisas para completar-se e buscar satisfação. É por isso que o dinheiro e coisas materiais assumiram um valor desproporcionado e o ser humano está disposto a roubar, a explorar e mentir a cada instante. A isso se deve a luta entre o capital e o trabalho, entre patrões e operários, entre exploradores e explorados, etc.
+                São inúteis todas as mudanças políticas sem havermos compreendido antes nossa pobreza interior. Podem mudar-se, uma e outra vez, os sistemas econômicos, pode alterar-se, vez por outra, o sistema social, porém se não temos compreendido profundamente a natureza íntima de nossa pobreza interior, o individuo criará sempre novos meios e caminhos para obter satisfação pessoal à custa da paz dos outros.<br><br>
+                Urge compreender profundamente a natureza intima deste “mim mesmo”, se é que realmente queremos ser ricos internamente. Quem é rico internamente, é incapaz de explorar o próximo, é incapaz de roubar e de mentir. Quem é rico internamente está livre das travas da sensação e satisfação pessoal. Quem é rico internamente, encontrou a felicidade.<br><br>
+                Necessitamos de dinheiro, é certo, porém é necessário compreendermos profundamente nossa justa relação com o mesmo. Nem o asceta, nem avarento cobiçoso compreenderam jamais qual é nossa justa relação com o dinheiro. Não é renunciando ao dinheiro nem cobiçando-o, que podemos chegar a entender nossa justa relação com este. Necessitamos de compreensão para nos dar conta inteligenternente de nossas próprias necessidades materiais, sem dependermos desproporcionalmente do dinheiro.
+                Quando compreendemos nossa justa relação com o dinheiro, termina, de fato, a dor do desprendimento e do sofrimento espantoso que produz a competição. Devemos aprender a diferenciar entre nossas necessidades físicas imediatas e a dependência psicológica das coisas. A dependência psicológica das coisas cria a exploração e a escravidão.<br><br>
+                Necessitamos de dinheiro para satisfazer nossas necessidades físicas imediatas, porém desgraçadamente, a necessidade se transforma em cobiça. O eu psicológico, percebendo sua própria vacuidade e miséria, costuma dar ao dinheiro e às coisas um valor distinto do que têm, um valor exagerado e absurdo. Assim é como o eu quer enriquecer-se externamente já que internamente é pobre e miserável. O eu quer fazer sentir-se, deslumbrar o próximo com as coisas e o dinheiro.<br><br>
+                Alegamos sempre a necessidade para justificar a cobiça. Esta última é a causa secreta do ódio e das brutalidades do mundo, as quais costumam, muitas vezes, assumir aspectos legais. A cobiça é a causa da guerra e de todas as misérias deste mundo. Se quisermos acabar com a cobiça do mundo, devemos compreender profundamente que esse mundo está dentro de nós mesmos. Nós somos o mundo. A cobiça dos demais indivíduos está dentro de nós mesmos.<br><br>
+                Realmente, todos os indivíduos vivem dentro de nossa própria consciência. A cobiça do mundo está dentro do indivíduo e, só acabando com a cobiça que levamos interiormente, terminará a cobiça no Mundo. Somente compreendendo o complexo processo da cobiça em todos os níveis da mente, podemos chegar a experimentar a grande Realidade.<br><br>
+                <b>PRÁTICA</b><br>
+                1º - Deite-se de costas, em forma de estrela, abrindo as pernas e os braços para a direita e para a esquerda.
+                2º - Concentre-se agora em suas próprias necessidades físicas imediatas.<br>
+                3º - Medite, reflita em cada uma dessas necessidades.<br>
+                4º - Adormeça tentanto descobrir, por si mesmo, onde termina a necessidade e onde começa a cobiça.<br>
+                5º - Se sua prática de concentração e meditação interna for correta, descobrirá, em visão interna, quais são suas necessidades legítimas e qual a cobiça.<br>
+                Lembre-se de que, compreendendo profundamente a necessidade e a cobiça, poderá estabelecer bases verdadeiras para o processo correto do pensar.
+                <br><br>
+                Livro na íntegra: <a target="_blank" href="https://drive.google.com/file/d/0ByuJiBLnCPXgelBYcTBHZlhvNHc/view">Link para o pdf.</a>
+                <br><br>
+            </section>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
